@@ -1,0 +1,435 @@
+﻿<Window xmlns:NumericTextBox="clr-namespace:NumericTextBox;assembly=NumericTextBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MBAOBJECT="clr-namespace:ACADTRANSFORMER.MBAOBJECT"  x:Class="ACADTRANSFORMER.GIAODIEN.Window1"
+        Title="AUTOCAD TRANSFORMER" Height="683.346" Width="904.543" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources  >
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--Material color-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/materialdesigncolor.teal.xaml" />
+
+                <!--Material theme cơ bản-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+                <!--Các Style cần dùng-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.togglebutton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.textbox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
+
+
+                <!--My resource-->
+                <ResourceDictionary>
+                    <!--Màu của tôi-->
+                    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Primary100}"/>
+                    <!--Màu của tôi-->
+
+                    <!--Các màu chủ đạo của gói material design-->
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary100Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+                    <!--Các màu chủ đạo của gói material design-->
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+            <!--Cách app dụng style mặc định cho tất cả các Button trong ứng dụng-->
+            <!--<Style BasedOn="{StaticResource BackgroundBrush}"  TargetType="{x:Type Button}"/>-->
+
+
+            <Style BasedOn="{StaticResource ResourceKey=MaterialDesignMenu}"  TargetType="{x:Type Menu}">
+                <Setter Property="Margin" Value="2,2,2,2"/>
+                <Setter Property="MinHeight" Value="20"/>
+            </Style>
+            <Style BasedOn="{StaticResource ResourceKey=MaterialDesignRaisedButton}"  TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="2,2,2,2"/>
+                <Setter Property="MinHeight" Value="20"/>
+            </Style>
+
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+            <Style  TargetType="{x:Type NumericTextBox:NumericTextBox}">
+                <Setter Property="MinWidth" Value="40"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" >
+            <MenuItem Header="_FILE" >
+                <MenuItem Header="_Open" Click="BtnOpen_Click"  />
+                <MenuItem Header="_Save As" Click="BtnSaveAs_Click" />
+                <MenuItem Header="_Import form Excel" Click="BtnImportFormExcel_Click" />
+                <MenuItem Header="_Export to Excel" Click="BtnExportToExcel_Click"  />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Insert Drawing" >
+                <MenuItem Header="_Insert BV mạch từ" Click="BtnInsertBVMachTu_Click"/>
+                <MenuItem Header="_Insert Mặt cắt gông" Click="BtnVeMatCatGong_Click"/>
+                <MenuItem Header="_Insert Mặt cắt trụ" Click="BtnVeMatCatTru_Click"/>
+                <MenuItem Header="_Insert Mạch từ" Click="BtnVeHinhChieu_Click"/>
+                <MenuItem Header="_Insert Ruột máy" Click="BtnVeBoiDay_Click"/>
+            </MenuItem>
+        </Menu>
+        <TabControl DockPanel.Dock="Left" Width="516">
+            <TabItem Header="CORE">
+                <DockPanel Background="Azure">
+                    <Grid Margin="0,0,0,0" Width="399" Background="Bisque">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="38*" />
+                            <RowDefinition Height="29" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="29*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="29*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="29*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="28*" />
+                            <RowDefinition Height="29*" />
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="TT"/>
+                        <Button Grid.Column="1" Grid.Row="0" Content="Bt"  IsEnabled="{Binding IsChecked, ElementName=checkBox}" />
+                        <Button Grid.Column="2" Grid.Row="0" Content="Bg"   Click="BtnBg_Click" />
+                        <Button Grid.Column="3" Grid.Row="0" Content="HBg"   Click="BtnHbg_Click" IsEnabled="{Binding ElementName=chkGongTron, Mode=OneWay}" Margin="1" FontSize="12" MinHeight="20"/>
+                        <Button Grid.Column="4" Grid.Row="0" Content="N"  Click="BtnN_Click" IsEnabled="{Binding IsChecked, ElementName=chkAutoN}" />
+                        <Label Grid.Column="5" Grid.Row="0" Content="Dày"/>
+                        <Label Grid.Column="6" Grid.Row="0"  FontFamily="Symbol" Content="F"/>
+                        <Label Grid.Column="7" Grid.Row="0" Content="Td"/>
+
+                        <Label Grid.Column="0" Grid.Row="1" Content="1"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="2"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="3"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="4"/>
+                        <Label Grid.Column="0" Grid.Row="5" Content="5"/>
+                        <Label Grid.Column="0" Grid.Row="6" Content="6"/>
+                        <Label Grid.Column="0" Grid.Row="7" Content="7"/>
+                        <Label Grid.Column="0" Grid.Row="8" Content="8"/>
+                        <Label Grid.Column="0" Grid.Row="9" Content="9"/>
+                        <Label Grid.Column="0" Grid.Row="10" Content="10"/>
+                        <Label Grid.Column="0" Grid.Row="11" Content="11"/>
+                        <Label Grid.Column="0" Grid.Row="12" Content="12"/>
+                        <Label Grid.Column="0" Grid.Row="13" Content="13"/>
+                        <Label Grid.Column="0" Grid.Row="14" Content="14"/>
+                        <Label Grid.Column="0" Grid.Row="15" Content="15"/>
+                        <Label Grid.Column="0" Grid.Row="16" Content="16"/>
+                        <Label Grid.Column="0" Grid.Row="17" Content="17"/>
+                        <Label Grid.Column="0" Grid.Row="18" Content="18"/>
+                        <Label Grid.Column="0" Grid.Row="19" Content="19"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="1" Text="{Binding Bt[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="0"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="2" Text="{Binding Bt[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="3" Text="{Binding Bt[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="2"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="4" Text="{Binding Bt[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="3"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="5" Text="{Binding Bt[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="4"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="6" Text="{Binding Bt[5], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="5"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="7" Text="{Binding Bt[6], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="6"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="8" Text="{Binding Bt[7], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="7"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="9" Text="{Binding Bt[8], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="8"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="10" Text="{Binding Bt[9], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="9"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="11" Text="{Binding Bt[10], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="10"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="12" Text="{Binding Bt[11], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="11"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="13" Text="{Binding Bt[12], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="12"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="14" Text="{Binding Bt[13], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="13"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="15" Text="{Binding Bt[14], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="14"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="16" Text="{Binding Bt[15], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="15"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="17" Text="{Binding Bt[16], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="16"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="18" Text="{Binding Bt[17], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="17"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="19" Text="{Binding Bt[18], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="18"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="2" Grid.Row="1" Text="{Binding  Bg[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="19" />
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="2" Text="{Binding Bg[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="20"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="3" Text="{Binding Bg[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="21"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="4" Text="{Binding Bg[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="22"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="5" Text="{Binding Bg[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="23"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="6" Text="{Binding Bg[5], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="24"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="7" Text="{Binding Bg[6], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="25"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="8" Text="{Binding Bg[7], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="26"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="9" Text="{Binding Bg[8], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="27"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="10" Text="{Binding Bg[9], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="28"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="11" Text="{Binding Bg[10], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="29"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="12" Text="{Binding Bg[11], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="30"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="13" Text="{Binding Bg[12], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="31"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="14" Text="{Binding Bg[13], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="32"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="15" Text="{Binding Bg[14], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="33"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="16" Text="{Binding Bg[15], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="34"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="17" Text="{Binding Bg[16], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="35"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="18" Text="{Binding Bg[17], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="36"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="2" Grid.Row="19" Text="{Binding Bg[18], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="37"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="3" Grid.Row="1" Text="{Binding Hbg[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="38" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="2" Text="{Binding Hbg[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="39" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="3" Text="{Binding Hbg[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="40" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="4" Text="{Binding Hbg[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="41" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="5" Text="{Binding Hbg[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="42" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="6" Text="{Binding Hbg[5], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="43" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="7" Text="{Binding Hbg[6], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="44" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="8" Text="{Binding Hbg[7], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="45" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="9" Text="{Binding Hbg[8], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="46" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="10" Text="{Binding Hbg[9], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="47" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="11" Text="{Binding Hbg[10], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="48" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="12" Text="{Binding Hbg[11], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="49" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="13" Text="{Binding Hbg[12], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="50" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="14" Text="{Binding Hbg[13], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="51" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="15" Text="{Binding Hbg[14], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="52" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="16" Text="{Binding Hbg[15], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="53" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="17" Text="{Binding Hbg[16], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="54" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="18" Text="{Binding Hbg[17], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="55" TextChanged="reDraw_Click"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="3" Grid.Row="19" Text="{Binding Hbg[18], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="56" TextChanged="reDraw_Click"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="4" Grid.Row="1" Text="{Binding N[0], Mode=TwoWay, UpdateSourceTrigger= PropertyChanged}" TabIndex="57" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}" />
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="2" Text="{Binding N[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="58"  IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="3" Text="{Binding N[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="59" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="4" Text="{Binding N[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="60" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="5" Text="{Binding N[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="61" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="6" Text="{Binding N[5], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="62" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="7" Text="{Binding N[6], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="63" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="8" Text="{Binding N[7], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="64" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="9" Text="{Binding N[8], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="65" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="10" Text="{Binding N[9], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="66" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="11" Text="{Binding N[10], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="67" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="12" Text="{Binding N[11], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="68" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="13" Text="{Binding N[12], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="69" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="14" Text="{Binding N[13], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="70" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="15" Text="{Binding N[14], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="71" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="16" Text="{Binding N[15], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="72" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="17" Text="{Binding N[16], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="73" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="18" Text="{Binding N[17], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="74" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="4" Grid.Row="19" Text="{Binding N[18], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="75" IsReadOnly="{Binding IsChecked, ElementName=chkAutoN}"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="5" Grid.Row="1"  Text="{Binding Beday[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="76" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="2" Text="{Binding Beday[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="77" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="3" Text="{Binding Beday[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="78" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="4" Text="{Binding Beday[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="79" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="5" Text="{Binding Beday[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="80" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="6" Text="{Binding Beday[5], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="81" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="7" Text="{Binding Beday[6], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="82" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="8" Text="{Binding Beday[7], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="83" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="9" Text="{Binding Beday[8], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="84" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="10" Text="{Binding Beday[9], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="85" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="11" Text="{Binding Beday[10], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="86" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="12" Text="{Binding Beday[11], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="87" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="13" Text="{Binding Beday[12], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="88" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="14" Text="{Binding Beday[13], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="89" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="15" Text="{Binding Beday[14], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="90" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="16" Text="{Binding Beday[15], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="91" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="17" Text="{Binding Beday[16], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="92" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="18" Text="{Binding Beday[17], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="93" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="5" Grid.Row="19" Text="{Binding Beday[18], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="94" IsReadOnly="True"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="6" Grid.Row="1"  Text="{Binding Duongkinh[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="95" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="2" Text="{Binding Duongkinh[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="96" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="3" Text="{Binding Duongkinh[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="97" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="4" Text="{Binding Duongkinh[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="98" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="5" Text="{Binding Duongkinh[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="99" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="6" Text="{Binding Duongkinh[5], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="100" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="7" Text="{Binding Duongkinh[6], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="101" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="8" Text="{Binding Duongkinh[7], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="102" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="9" Text="{Binding Duongkinh[8], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="103" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="10" Text="{Binding Duongkinh[9], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="103" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="11" Text="{Binding Duongkinh[10], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="86" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="12" Text="{Binding Duongkinh[11], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="87" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="13" Text="{Binding Duongkinh[12], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="88" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="14" Text="{Binding Duongkinh[13], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="89" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="15" Text="{Binding Duongkinh[14], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="90" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="16" Text="{Binding Duongkinh[15], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="91" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="17" Text="{Binding Duongkinh[16], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="92" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="18" Text="{Binding Duongkinh[17], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="93" IsReadOnly="True"/>
+                        <NumericTextBox:NumericTextBox   Grid.Column="6" Grid.Row="19" Text="{Binding Duongkinh[18], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TabIndex="94" IsReadOnly="True"/>
+
+                        <CheckBox  Grid.Column="7" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[0],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[1],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[2],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[3],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[4],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[5],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[6],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[7],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[8],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="10" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[9],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="11" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[10],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="12" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[11],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="13" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[12],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[13],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="15" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[14],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="16" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[15],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="17" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[16],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="18" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[17],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox  Grid.Column="7" Grid.Row="19" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Thongdaucapton[18],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                    <StackPanel>
+                        <Grid Background="Azure">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0"  FontFamily="Symbol" Content="F" Height="27" Margin="14,0,16,0" Width="20"/>
+                            <Label Grid.Column="0" Grid.Row="1" Content="C" Height="28" Margin="14,0,16,0" Width="20" />
+                            <Label Grid.Column="0" Grid.Row="2" Content="H" Height="28" Margin="14,0,16,0" Width="20" />
+                            <Label Grid.Column="0" Grid.Row="3" Content="hr" Height="28" Margin="12,0,14,0" Width="24" />
+                            <Label Grid.Column="0" Grid.Row="4"  FontFamily="Symbol" Content="D" Height="27" Margin="14,0,16,0" Width="20"/>
+                            <Label Grid.Column="0" Grid.Row="5" Content="Klr" Height="28" Margin="12,0" Width="26" />
+                            <Label Grid.Column="0" Grid.Row="6" Content="Ke" Height="28" Margin="12,0,14,0" Width="24" />
+                            <Label Grid.Column="0" Grid.Row="7" Content="LT" Height="28" Margin="12,0,14,0" Width="24" />
+                            <Label Grid.Column="0" Grid.Row="8" Content="Ks" Height="28" Margin="12,0,14,0" Width="24" />
+                            <Label Grid.Column="0" Grid.Row="9" Content="Ch.ep" Height="28" Margin="4,0" Width="42" />
+                            <Label Grid.Column="0" Grid.Row="10" Content="S" Height="28" Margin="16,0" Width="18" />
+                            <Label Grid.Column="0" Grid.Row="11" Content="Hstep" Height="28" Margin="2,0,4,0" Width="44" />
+                            <Label Grid.Column="0" Grid.Row="12" Content="L cuối" Height="28" Margin="2,0,4,0" Width="44" />
+
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="0" Text="{Binding Diameter, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="76"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="1" Text="{Binding Ccs, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="77"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="2" Text="{Binding Hcs, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="78"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="3" Text="{Binding Hr, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="79"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="4" Text="{Binding Delta, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="80"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="5" Text="{Binding Klr, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="80" />
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="6" Text="{Binding Ke, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="82"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="7" Text="{Binding Lt, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="83"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="8" Text="{Binding Ks, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="84"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="9" Text="{Binding ChieuEp, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="85" IsReadOnly="True"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="10" Text="{Binding Section, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="86"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="11" Text="{Binding Steplab, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="86"/>
+                            <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="12" Text="{Binding Lcuoi, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="86"/>
+                        </Grid>
+                        <CheckBox x:Name="checkBox" HorizontalAlignment="Left" Margin ="20,20,0,0">Auto Bt</CheckBox>
+                        <CheckBox Name="chkAutoN"  HorizontalAlignment="Left" Margin ="20,5,0,0">Auto N</CheckBox>
+                        <CheckBox Name="chkGongTron"  HorizontalAlignment="Left" Margin ="20,5,0,0">Gông tròn</CheckBox>
+                        <Button Margin="2,19,2,2" Click="BtnExit_Click" Content="EXIT"/>
+
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="WINDING">
+                <StackPanel Background="Azure">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0">Bối dây</Label>
+                        <Label Grid.Column="0" Grid.Row="1">W1</Label>
+                        <Label Grid.Column="0" Grid.Row="2">W2</Label>
+                        <Label Grid.Column="0" Grid.Row="3">W3</Label>
+                        <Label Grid.Column="0" Grid.Row="4">W4</Label>
+                        <Label Grid.Column="0" Grid.Row="5">W5</Label>
+
+                        <Label Grid.Column="1" Grid.Row="0">ĐK trong</Label>
+                        <Label Grid.Column="2" Grid.Row="0">ĐK ngoài</Label>
+                        <Label Grid.Column="3" Grid.Row="0">H</Label>
+                        <Label Grid.Column="4" Grid.Row="0">Đệm đầu</Label>
+                        <Label Grid.Column="5" Grid.Row="0">Đệm giữa</Label>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="1" Text="{Binding Winding1.D1t,UpdateSourceTrigger=LostFocus}" TabIndex="0"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="2" Text="{Binding Winding1.D2t,UpdateSourceTrigger=LostFocus}" TabIndex="1"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="3" Text="{Binding Winding1.D3t,UpdateSourceTrigger=LostFocus}" TabIndex="2"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="4" Text="{Binding Winding1.D4t,UpdateSourceTrigger=LostFocus}" TabIndex="3"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="5" Text="{Binding Winding1.D5t,UpdateSourceTrigger=LostFocus}" TabIndex="4"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="2" Grid.Row="1" Text="{Binding Winding1.D1n,UpdateSourceTrigger=LostFocus}" TabIndex="5"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="2" Grid.Row="2" Text="{Binding Winding1.D2n,UpdateSourceTrigger=LostFocus}" TabIndex="6"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="2" Grid.Row="3" Text="{Binding Winding1.D3n,UpdateSourceTrigger=LostFocus}" TabIndex="7"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="2" Grid.Row="4" Text="{Binding Winding1.D4n,UpdateSourceTrigger=LostFocus}" TabIndex="8"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="2" Grid.Row="5" Text="{Binding Winding1.D5n,UpdateSourceTrigger=LostFocus}" TabIndex="9"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="3" Grid.Row="1" Text="{Binding Winding1.H1,UpdateSourceTrigger=LostFocus}" TabIndex="5"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="3" Grid.Row="2" Text="{Binding Winding1.H2,UpdateSourceTrigger=LostFocus}" TabIndex="6"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="3" Grid.Row="3" Text="{Binding Winding1.H3,UpdateSourceTrigger=LostFocus}" TabIndex="7"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="3" Grid.Row="4" Text="{Binding Winding1.H4,UpdateSourceTrigger=LostFocus}" TabIndex="8"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="3" Grid.Row="5" Text="{Binding Winding1.H5,UpdateSourceTrigger=LostFocus}" TabIndex="9"/>
+
+                        <NumericTextBox:NumericTextBox  Grid.Column="4" Grid.Row="1" Text="{Binding Winding1.Demdau1,UpdateSourceTrigger=LostFocus}" TabIndex="5"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="4" Grid.Row="2" Text="{Binding Winding1.Demdau2,UpdateSourceTrigger=LostFocus}" TabIndex="6"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="4" Grid.Row="3" Text="{Binding Winding1.Demdau3,UpdateSourceTrigger=LostFocus}" TabIndex="7"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="4" Grid.Row="4" Text="{Binding Winding1.Demdau4,UpdateSourceTrigger=LostFocus}" TabIndex="8"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="4" Grid.Row="5" Text="{Binding Winding1.Demdau5,UpdateSourceTrigger=LostFocus}" TabIndex="9"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0">Số căn dọc</Label>
+                        <Label Grid.Column="0" Grid.Row="1">L01</Label>
+                        <Label Grid.Column="0" Grid.Row="2">L02</Label>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="0" Text="{Binding Winding1.NCanDoc, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="86"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="1" Text="{Binding Winding1.L01, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="86"/>
+                        <NumericTextBox:NumericTextBox  Grid.Column="1" Grid.Row="2" Text="{Binding Winding1.L02, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TabIndex="86"/>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <StackPanel DockPanel.Dock="Right">
+
+
+        </StackPanel>
+        <Canvas Margin="5,5,0,5" Name="khungve" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="373" Height="500">
+        </Canvas>
+        <Button Margin="0" Click="reDraw_Click" Content="Re Draw"  Width="288"/>
+    </DockPanel>
+</Window>
